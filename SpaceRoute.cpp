@@ -122,7 +122,7 @@ public:
             removeWaypointAtBeginning();
         else if (index == length - 1)
             removeWaypointAtEnd();
-        else if (index < 0 || index ==  length)
+        else if (index < 0 || index >=  length)
             cout << "\nInvalid Index: index #" << index << " is out of range!\n" << endl;
         else {
             Node<T> *temp = head;
@@ -153,19 +153,38 @@ public:
     }
 
     Node<T>* getWaypoint(int index) {
-        Node<T> *temp = head;
-        for (int i = 0; i < index; i++) {
-            temp = temp -> next;
+        if (index == 0)
+            return head;
+        else if (index == length - 1)
+            return tail;
+        else if (index < 0 || index >= length) {
+            cout << "\nInvalid Index: index #" << index << " is out of range!\n" << endl;
+            return nullptr;
         }
-        return temp;
+        else {
+            Node<T> *temp = head;
+            for (int i = 0; i < index; i++) {
+                temp = temp -> next;
+            }
+            return temp;
+        }
     }
 
     void setWaypoint(int index, T& data) {
-        Node<T> *temp = head;
-        for (int i = 0; i < index; i++) {
-            temp = temp -> next;
+        if (index == 0)
+            head -> data = data;
+        else if (index == length - 1)
+            tail -> data = data;
+        else if (index < 0 || index >= length) {
+            cout << "\nInvalid Index: index #" << index << " is out of range!\n" << endl;
         }
-        temp -> data = data;
+        else {
+            Node<T> *temp = head;
+            for (int i = 0; i < index; i++) {
+                temp = temp -> next;
+            }
+            temp -> data = data;
+        }
     }
 
     void print(){
