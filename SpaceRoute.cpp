@@ -44,9 +44,9 @@ public:
     ~SpaceRoute() {
         Node<T> *temp = head;
         while (temp) {
-        head = head -> next;
-        delete temp;
-        temp = head;
+            head = head -> next;
+            delete temp;
+            temp = head;
         }
     }; // Destructor
 
